@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+
+<body>
+    <script src="./../vendor/moment.js"></script>
+    <script>
+
+        moment.lang("vi");
+        (async () => {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const id = urlParams.get('id')
+
+            const channelResponse = await fetch("./../data/channel.json");
+            const channelJson = await channelResponse.json();
+
+            const dataChannel = document.cookie.slice(document.cookie.search('channel=') + 8, document.cookie.length);
+
+            const index = channelJson.findIndex(element => element.id === id);
+
+            if (index === -1) {
+                const statistics = JSON.parse(dataChannel);
+                statistics.createdAt = moment().format();
+                const data = {
+                    id,
+                    statistics,
+                    updatedAt: moment().format()
+                }
+                channelJson.push(data);
+            } else {
+                if (moment(channelJson[index].updatedAt).format("YYYY-MM-DD") !== moment().format("YYYY-MM-DD")) {
+                    const data = JSON.parse(dataChannel);
+                    data.createdAt = moment().format();
+                    channelJson[index].statistics.push(data);
+                    channelJson[index].updatedAt = moment().format();
+                }
+            }
+
+            document.write(JSON.stringify(channelJson));
+        })();
+    </script>
+</body>
+
+</html>

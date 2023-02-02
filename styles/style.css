@@ -1,0 +1,52 @@
+/* html,
+body {
+    height: 100%;
+    width: 100%;
+} */
+
+/* #myChart {
+    height: 100%;
+    width: 100%;
+    min-height: 150px;
+} */
+
+.menu {
+    position: fixed;
+    top: 30%;
+    right: 5px;
+    width: 70px;
+    height: 30px;
+    color: #fff;
+    background-color: rgb(184, 33, 33);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px gray;
+    cursor: pointer;
+}
+
+.menu>.menu-text {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.menu>.menu-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.menu-item>.item {
+    width: 5px;
+    height: 5px;
+    margin: 3px;
+    background-color: #fff;
+    border-radius: 50%;
+}

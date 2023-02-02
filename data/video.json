@@ -1,0 +1,17 @@
+{
+    "idChannel": "channel",
+    "activities": [
+        {
+            "idVideo": "",
+            "statistics": [
+                {
+                    "viewCount": "307",
+                    "likeCount": "15",
+                    "favoriteCount": "0",
+                    "commentCount": "4",
+                    "updatedAt": ""
+                }
+            ]
+        }
+    ]
+}
