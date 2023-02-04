@@ -1,16 +1,9 @@
-const key = "AIzaSyAFkAAtGtiSNXEmT4XqZQZ6qTVRZC0sh6w";
-const googleapis = "https://youtube.googleapis.com/youtube/v3/";
-const channelId = "UCP1CBchAPHLqQWnZ23P4PrQ";
-// const channelId = "UCwRbNdY2ipKp9MU_BpbTjeQ";
-const channel = `${googleapis}channels?part=snippet,contentDetails,statistics&id=${channelId}&key=${key}`;
-const activities = `${googleapis}activities?part=snippet,contentDetails&channelId=${channelId}&maxResults=25&key=${key}`;
-const channels = `./temp.json`;
-const activitiess = `./active.json`;
+import * as constant from "./constants.js";
 
 moment.lang("vi");
 
 async function getChannel() {
-  const response = await fetch(channel);
+  const response = await fetch(constant.channel);
   const data = await response.json();
 
   document.cookie = "channel=" + JSON.stringify(data.items[0].statistics);
@@ -19,7 +12,7 @@ async function getChannel() {
 getChannel();
 
 async function getActivities() {
-  const response = await fetch(activities);
+  const response = await fetch(constant.activities);
   const data = await response.json();
 
   for await (const obj of data.items) {
@@ -29,7 +22,7 @@ async function getActivities() {
 
 async function getVideo(obj) {
   const response = await fetch(
-    `${googleapis}videos?id=${obj.contentDetails.upload?.videoId}&key=${key}&part=snippet,contentDetails,statistics,status`
+    `${constant.videos}&id=${obj.contentDetails.upload?.videoId}`
   );
   const data = await response.json();
   if (data.items[0]?.id) {
@@ -60,9 +53,7 @@ const renderChannelHtml = (snippet, statistics) => {
               <li>customUrl: ${snippet.customUrl}</li>
               <li>custcountryomUrl: ${snippet.country}</li>
               <li>viewCount: ${statistics.viewCount}</li>
-              <li>subscriberCount: ${
-                statistics.subscriberCount
-              }</li>
+              <li>subscriberCount: ${statistics.subscriberCount}</li>
               <li>hiddenSubscriberCount: ${
                 statistics.hiddenSubscriberCount
               }</li>
@@ -85,7 +76,7 @@ const renderVideoHtml = (id, snippet, statistics) => {
               <li>viewCount: ${formatNumber(statistics?.viewCount)}</li>
               <li>likeCount: ${formatNumber(statistics?.likeCount)}</li>
               <li>favoriteCount: ${statistics?.favoriteCount}</li>
-              <li onclick="handleClick('${id}')">
+              <li onclick="handleClick("${id}")">
                 commentCount: ${statistics.commentCount}
               </li>
           </ul>
@@ -95,9 +86,7 @@ const renderVideoHtml = (id, snippet, statistics) => {
 };
 
 async function handleClick(videoId) {
-  const response = await fetch(
-    `${googleapis}commentThreads?part=snippet,replies&maxResults=300&videoId=${videoId}&key=${key}`
-  );
+  const response = await fetch(`${constant.commentThreads}&videoId=${videoId}`);
   const data = await response.json();
 
   for await (const obj of data.items) {
@@ -111,8 +100,6 @@ async function handleClick(videoId) {
 }
 
 const renderComment = (snippet, replies) => {
-  const commentElm = document.querySelector("#comment");
-
   const html = `<div class="comment ${replies && "margin-left: 100px"}">
                   <div class="comment-inner">
                       <div class="comment-avatar">
@@ -169,10 +156,14 @@ const renderComment = (snippet, replies) => {
                   </div>
                 </div>`;
   $("#comment").append(html);
-  return html;
 };
 
-const menu = document.querySelector('#menu');
-menu.onclick = () => {
-  location.href = "./pages/channel.html";
-} 
+const channelJson = document.querySelector("#channelJson");
+channelJson.onclick = () => {
+  window.open(`${constant.pageChannel}?id=${constant.channelId}`, "_blank");
+};
+
+const videoJson = document.querySelector("#videoJson");
+videoJson.onclick = () => {
+  window.open(`${constant.pageVideos}?id=${constant.channelId}`, "_blank");
+};

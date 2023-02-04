@@ -7,16 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/comment.css">
+    <link rel="stylesheet" href="./styles/comment.css" />
+    <link rel="stylesheet" href="./styles/close.css" />
 </head>
 
 <body>
     <div class="main">
-        <div class="channel"></div>
-        <div class="video"></div>
+        <div id="channel" class="channel"></div>
+        <div id="video" class="video"></div>
     </div>
     <div id="comment" style="padding: 24px"></div>
-    <div id="myChart"></div>
+    
+    <div class="chart">
+        <div id="myChart" class="myChart"></div>
+        <div id="closeChart" class="closeChart">
+            <div class="close open"></div>
+        </div>
+    </div>
 
     <div id="menu" class="menu">
         <div class="menu-text">Menu</div>
@@ -25,14 +32,18 @@
             <span class="item"></span>
             <span class="item"></span>
         </div>
+        <div class="menu-list">
+            <div id="channelJson" class="menu-list-item">channel</div>
+            <div id="videoJson" class="menu-list-item">video</div>
+        </div>
     </div>
 
     <script src="./vendor/jquery-1.9.0rc1.js"></script>
     <script src="./vendor/moment.js"></script>
     <script src="./vendor/moment-with-locales.js"></script>
-    <!-- <script src="./vendor/zingchart.min.js"></script> -->
-    <script src="./scripts/script.js"></script>    
-    <!-- <script src="./scripts/chart.js"></script> -->
+    <script src="./vendor/zingchart.min.js"></script>
+    <script type="module" src="./scripts/script.js"></script>    
+    <script type="module" src="./scripts/chart.js"></script>
 </body>
 
 </html>

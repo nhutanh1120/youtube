@@ -1,0 +1,72 @@
+.close {
+    width: 30px;
+    height: 30px;
+    margin: 100px auto;
+    position: relative;
+    border-top: 3px solid #000;
+    border-color: #000;
+    display: block;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    top: 0px;
+    cursor: pointer;
+}
+
+.close:after,
+.close:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    border-top: 3px solid #000;
+    left: 0px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.close:after {
+    top: 6px;
+}
+
+.close:before {
+    top: 15px;
+}
+
+.close.open {
+    border: 3px solid #000;
+    border-radius: 50%;
+    top: -8px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.close.open:before,
+.close.open:after {
+    top: 14px;
+    left: 3px;
+    width: 80%;
+}
+
+.close.open:after {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+
+}
+
+.close.open:before {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}

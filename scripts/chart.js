@@ -1,5 +1,4 @@
-const colors = ["#007790", "#009872", "#da534d"];
-const colies = ["#69dbf1", "#69f2d0", "#faa39f"];
+import * as constant from "./constants.js";
 
 var myConfig = {
   type: "line",
@@ -27,19 +26,33 @@ var myConfig = {
     },
   },
   "scale-x": {
-    "min-value": 1383292800000,
+    // "min-value": 1383292800000,
     shadow: 0,
-    step: 3600000,
-    transform: {
-      type: "date",
-      all: "%D, %d %M<br />%h:%i %A",
-      item: {
-        visible: false,
-      },
-    },
+    // step: 3600000,
+    // transform: {
+    //   type: "date",
+    //   all: "%D, %d %M<br />%h:%i %A",
+    //   item: {
+    //     visible: false,
+    //   },
+    // },
     label: {
       visible: false,
     },
+    labels: [
+      "300",
+      "301",
+      "301",
+      "",
+      "",
+      "",
+      "580",
+      "640",
+      "700",
+      "750",
+      "",
+      "850",
+    ],
     "minor-ticks": 0,
   },
   "scale-y": {
@@ -49,7 +62,7 @@ var myConfig = {
       "line-style": "dashed",
     },
     label: {
-      text: "Page Views",
+      text: "count",
     },
     "minor-ticks": 0,
     "thousands-separator": ",",
@@ -93,22 +106,14 @@ var myConfig = {
   series: [],
 };
 
-var data = [
-  {
-    viewCount: "39307",
-    subscriberCount: "1170",
-    hiddenSubscriberCount: false,
-    videoCount: "18",
-    updatedAt: "2023-02-01T00:03:38+07:00",
-  },
-  {
-    viewCount: "39322",
-    subscriberCount: "1170",
-    hiddenSubscriberCount: false,
-    videoCount: "18",
-    updatedAt: "2023-02-01T23:42:35+07:00",
-  },
-];
+async function getData(url) {
+  var statistics = [];
+  const response = await fetch(url);
+  const data = await response.json();
+  statistics = data[0].statistics;
+  return statistics;
+}
+
 var series = {
   values: [],
   text: "Pricing",
@@ -139,21 +144,26 @@ function getDataFromObject(params, objData) {
   });
   return result;
 }
-const datass = ["viewCount", "subscriberCount", "videoCount"];
-function renderChart(title) {
+
+async function renderChart(title, url) {
   let seriesData = [];
-  datass.map((element, index) => {
+  const statistics = await getData(url);
+  const result = statistics.map((element) => {
+    return moment(element.createdAt).format("YYYY-MM-DD h:mm:ss");
+  });
+  constant.keyOfChannel.map((element, index) => {
     const seriesClone = JSON.parse(JSON.stringify(series));
     seriesClone["text"] = element;
-    seriesClone["values"] = getDataFromObject(element, data);
-    seriesClone["line-color"] = colors[index];
-    seriesClone["legend-item"]["background-color"] = colors[index];
-    seriesClone.marker["background-color"] = colors[index];
-    seriesClone.marker["border-color"] = colies[index];
-    seriesClone["highlight-marker"]["background-color"] = colors[index];
+    seriesClone["values"] = getDataFromObject(element, statistics);
+    seriesClone["line-color"] = constant.colors[index];
+    seriesClone["legend-item"]["background-color"] = constant.colors[index];
+    seriesClone.marker["background-color"] = constant.colors[index];
+    seriesClone.marker["border-color"] = constant.colies[index];
+    seriesClone["highlight-marker"]["background-color"] = constant.colors[index];
     seriesData = [...seriesData, { ...seriesClone }];
   });
   myConfig.title.text = title;
+  myConfig["scale-x"].labels = result;
   myConfig.series = seriesData;
   zingchart.render({
     id: "myChart",
@@ -162,11 +172,15 @@ function renderChart(title) {
     width: "100%",
   });
 }
-renderChart();
 
-//   zingchart.render({
-//     id: 'myChart',
-//     data: myConfig,
-//     height: '100%',
-//     width: '100%'
-//   });
+const channelElement = document.querySelector("#channel");
+const closeChartElement = document.querySelector("#closeChart");
+const myChartElements = document.querySelector(".chart");
+channelElement.onclick = () => {
+  myChartElements.classList.add("active");
+  renderChart(constant.channelId, "./data/channel.json");
+};
+
+closeChartElement.onclick = () => {
+  myChartElements.classList.remove("active");
+};

@@ -10,18 +10,24 @@
 
 <body>
     <script src="./../vendor/moment.js"></script>
-    <script>
-
+    <script type="module">
+        import * as constant from "./../scripts/constants.js";
         moment.lang("vi");
-        (async () => {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const id = urlParams.get('id')
 
-            const channelResponse = await fetch("./../data/channel.json");
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get("id");
+
+        if (id === null || id === "") {
+            window.location.href = "./../";
+        }
+
+        (async () => {
+            const body = document.querySelector("body");
+            const channelResponse = await fetch(constant.channelJson);
             const channelJson = await channelResponse.json();
 
-            const dataChannel = document.cookie.slice(document.cookie.search('channel=') + 8, document.cookie.length);
+            const dataChannel = document.cookie.slice(document.cookie.search("channel=") + 8, document.cookie.length);
 
             const index = channelJson.findIndex(element => element.id === id);
 
@@ -43,7 +49,7 @@
                 }
             }
 
-            document.write(JSON.stringify(channelJson));
+            body.innerText = JSON.stringify(channelJson);
         })();
     </script>
 </body>

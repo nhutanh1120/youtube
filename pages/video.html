@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+
+<body>
+    <script src="./../vendor/moment.js"></script>
+    <script type="module">
+        import * as constant from "./../scripts/constants.js";
+        moment.lang("vi");
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get("id");
+
+        if (id === null || id === "") {
+            window.location.href = "./../";
+        }
+
+        (async () => {
+            const body = document.querySelector("body");
+            const videoResponseJson = await fetch(constant.videosJson);
+            const videosJson = await videoResponseJson.json();
+
+            const lstVideoResponseApi = await fetch(constant.activities);
+            const lstVideoApi = await lstVideoResponseApi.json();
+
+            const idxChannel = videosJson.findIndex(element => element.idChannel === id);
+            if (idxChannel === -1) {
+                const channelActivities = {
+                    idChannel: id,
+                    activities: [],
+                    updatedAt: moment().format()
+                }
+                for await (const obj of lstVideoApi.items) {
+                    const responseVideo = await fetch(
+                        `${constant.videos}&id=${obj.contentDetails.upload?.videoId}`
+                    );
+                    const video = await responseVideo.json();
+
+                    if (video?.items.length > 0) {
+                        video.items[0].statistics.createdAt = moment().format();
+                        const videoActivities = {
+                            idVideo: video?.items[0].id,
+                            statistics: [video?.items[0].statistics],
+                            updatedAt: moment().format()
+                        }
+                        channelActivities.activities.push(videoActivities);
+                    }
+                }
+                videosJson.push(channelActivities);
+            } else {
+                if (moment(videosJson[idxChannel].updatedAt).format("YYYY-MM-DD") !== moment().format("YYYY-MM-DD")) {
+                    videosJson[idxChannel].updatedAt = moment().format();
+                    for await (const obj of lstVideoApi.items) {
+                        const responseVideo = await fetch(
+                            `${constant.videos}&id=${obj.contentDetails.upload?.videoId}`
+                        );
+                        const video = await responseVideo.json();
+
+                        if (video?.items.length > 0) {
+                            const idxVideo = videosJson[idxChannel].activities.findIndex(elementJson =>
+                                elementJson.idVideo === video.items[0]?.id
+                            )
+
+                            if (idxVideo === -1) {
+                                video.items[0].statistics.createdAt = moment().format();
+                                const videoActivities = {
+                                    idVideo: video.items[0].id,
+                                    statistics: video.items[0].statistics,
+                                    updatedAt: moment().format()
+                                }
+                                videosJson[idxChannel].activities.push(videoActivities);
+                            } else {
+                                video.items[0].statistics.createdAt = moment().format();
+                                videosJson[idxChannel].activities[idxVideo].statistics.push(video.items[0].statistics);
+                                videosJson[idxChannel].activities[idxVideo].updatedAt = moment().format();
+                            }
+                        }
+                    }
+                }
+            }
+
+            body.innerText = JSON.stringify(videosJson);
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,14 +1,30 @@
-/* html,
-body {
+.chart {
+    position: fixed;
+    top: 100%;
+    left: 0;
     height: 100%;
     width: 100%;
-} */
+    background-color: #fff;
+    transition: .5s;
+    z-index: 100;
+}
 
-/* #myChart {
+.chart.active {
+    top: 0;
+}
+
+.chart .myChart {
     height: 100%;
     width: 100%;
     min-height: 150px;
-} */
+    overflow: auto;
+}
+
+.chart .closeChart {
+    position: absolute;
+    bottom: 75%;
+    right: 10px;
+}
 
 .menu {
     position: fixed;
@@ -25,6 +41,7 @@ body {
     border-radius: 20px;
     box-shadow: 1px 1px 1px gray;
     cursor: pointer;
+    z-index: 10;
 }
 
 .menu>.menu-text {
@@ -49,4 +66,14 @@ body {
     margin: 3px;
     background-color: #fff;
     border-radius: 50%;
+}
+.menu .menu-list {
+    position: absolute;
+    top: calc(100% + 10px);
+    background: #fff;
+    color: #000;
+}
+
+.menu .menu-list-item {
+    text-transform: capitalize;
 }
