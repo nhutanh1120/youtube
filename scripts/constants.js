@@ -13,3 +13,4 @@ export const videosJson = "/data/video.json";
 export const colors = ["#007790", "#009872", "#da534d"];
 export const colies = ["#69dbf1", "#69f2d0", "#faa39f"];
 export const keyOfChannel = ["viewCount", "subscriberCount", "videoCount"];
+export const keyOfVideo = ["viewCount", "likeCount", "commentCount"];

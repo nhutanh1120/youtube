@@ -1,4 +1,5 @@
 import * as constant from "./constants.js";
+import { handleChart } from "./chart.js";
 
 moment.lang("vi");
 
@@ -73,10 +74,12 @@ const renderVideoHtml = (id, snippet, statistics) => {
               <li>publishedAt: ${moment(snippet?.publishedAt).format(
                 "dddd YYYY-MM-DD h:mm:ss a"
               )}</li>
-              <li>viewCount: ${formatNumber(statistics?.viewCount)}</li>
+              <li class="card-chart" data-id="${id}">viewCount: ${formatNumber(
+    statistics?.viewCount
+  )}</li>
               <li>likeCount: ${formatNumber(statistics?.likeCount)}</li>
               <li>favoriteCount: ${statistics?.favoriteCount}</li>
-              <li onclick="handleClick("${id}")">
+              <li class="card-comment" data-id="${id}">
                 commentCount: ${statistics.commentCount}
               </li>
           </ul>
@@ -85,7 +88,22 @@ const renderVideoHtml = (id, snippet, statistics) => {
   $(".video").append(html);
 };
 
-async function handleClick(videoId) {
+const commentsElements = document.querySelector("#video");
+commentsElements.onclick = (event) => {
+  switch (event.srcElement.className) {
+    case "card-comment":
+      handleComment(event.srcElement.dataset.id);
+      break;
+
+    case "card-chart":
+      handleChart(event.srcElement.dataset.id);
+      break;
+
+    default:
+      break;
+  }
+};
+async function handleComment(videoId) {
   const response = await fetch(`${constant.commentThreads}&videoId=${videoId}`);
   const data = await response.json();
 

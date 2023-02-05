@@ -106,11 +106,18 @@ var myConfig = {
   series: [],
 };
 
-async function getData(url) {
+async function getData(type, id, url) {
   var statistics = [];
   const response = await fetch(url);
   const data = await response.json();
-  statistics = data[0].statistics;
+  if (type === "channel") {
+    statistics = data[0].statistics;
+  } else {
+    const idx = data[0].activities.findIndex(
+      (element) => element.idVideo === id
+    );
+    statistics = data[0].activities[idx].statistics;
+  }
   return statistics;
 }
 
@@ -145,13 +152,15 @@ function getDataFromObject(params, objData) {
   return result;
 }
 
-async function renderChart(title, url) {
+async function renderChart(type, id, url) {
   let seriesData = [];
-  const statistics = await getData(url);
+  const lstKey =
+    type === "channel" ? constant.keyOfChannel : constant.keyOfVideo;
+  const statistics = await getData(type, id, url);
   const result = statistics.map((element) => {
     return moment(element.createdAt).format("YYYY-MM-DD h:mm:ss");
   });
-  constant.keyOfChannel.map((element, index) => {
+  lstKey.map((element, index) => {
     const seriesClone = JSON.parse(JSON.stringify(series));
     seriesClone["text"] = element;
     seriesClone["values"] = getDataFromObject(element, statistics);
@@ -159,10 +168,11 @@ async function renderChart(title, url) {
     seriesClone["legend-item"]["background-color"] = constant.colors[index];
     seriesClone.marker["background-color"] = constant.colors[index];
     seriesClone.marker["border-color"] = constant.colies[index];
-    seriesClone["highlight-marker"]["background-color"] = constant.colors[index];
+    seriesClone["highlight-marker"]["background-color"] =
+      constant.colors[index];
     seriesData = [...seriesData, { ...seriesClone }];
   });
-  myConfig.title.text = title;
+  myConfig.title.text = id;
   myConfig["scale-x"].labels = result;
   myConfig.series = seriesData;
   zingchart.render({
@@ -178,9 +188,14 @@ const closeChartElement = document.querySelector("#closeChart");
 const myChartElements = document.querySelector(".chart");
 channelElement.onclick = () => {
   myChartElements.classList.add("active");
-  renderChart(constant.channelId, "./data/channel.json");
+  renderChart("channel", constant.channelId, constant.channelJson);
 };
 
 closeChartElement.onclick = () => {
   myChartElements.classList.remove("active");
 };
+
+export function handleChart(id) {
+  myChartElements.classList.add("active");
+  renderChart("video", id, constant.videosJson);
+}
