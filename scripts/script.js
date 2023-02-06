@@ -103,10 +103,16 @@ commentsElements.onclick = (event) => {
       break;
   }
 };
+
+const commentElement = document.querySelector("#comment");
+const contentCommentElement = document.querySelector("#comment-content"); 
+const closeCommentElement = document.querySelector("#comment-close"); 
 async function handleComment(videoId) {
   const response = await fetch(`${constant.commentThreads}&videoId=${videoId}`);
   const data = await response.json();
 
+  commentElement.classList.add("active");
+  contentCommentElement.innerHTML = "";
   for await (const obj of data.items) {
     renderComment(obj.snippet.topLevelComment.snippet, false);
     if (obj.snippet.totalReplyCount > 0) {
@@ -116,6 +122,10 @@ async function handleComment(videoId) {
     }
   }
 }
+
+closeCommentElement.onclick = () => {
+  commentElement.classList.remove("active");
+};
 
 const renderComment = (snippet, replies) => {
   const html = `<div class="comment ${replies && "margin-left: 100px"}">
@@ -173,7 +183,7 @@ const renderComment = (snippet, replies) => {
                       </div>
                   </div>
                 </div>`;
-  $("#comment").append(html);
+  $("#comment-content").append(html);
 };
 
 const channelJson = document.querySelector("#channelJson");
