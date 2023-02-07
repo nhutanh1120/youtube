@@ -158,11 +158,11 @@ async function renderChart(type, id, url) {
     type === "channel" ? constant.keyOfChannel : constant.keyOfVideo;
   const statistics = await getData(type, id, url);
   const result = statistics.map((element) => {
-    return moment(element.createdAt).format("YYYY-MM-DD h:mm:ss");
+    return moment(element.createdAt).format("YYYY-MM-DD h:mm:ss a");
   });
   lstKey.map((element, index) => {
     const seriesClone = JSON.parse(JSON.stringify(series));
-    seriesClone["text"] = element;
+    seriesClone["text"] = getNameByKey(element);
     seriesClone["values"] = getDataFromObject(element, statistics);
     seriesClone["line-color"] = constant.colors[index];
     seriesClone["legend-item"]["background-color"] = constant.colors[index];
@@ -203,22 +203,31 @@ videoChart.onclick = async () => {
   const channel = await response.json();
 
   myChartElements.classList.add("active");
+
   const index = channel.findIndex((element) => element.idChannel === id);
+  const lstCreatedAt = getDataFromObject(
+    "createdAt",
+    channel[index].activities[0].statistics
+  );
+  console.log(lstCreatedAt);
+  const result = lstCreatedAt.map((element) => {
+    return moment(element).format("YYYY-MM-DD h:mm:ss a");
+  });
+  console.log(result);
   sortObj(channel[index].activities);
-  channel[index].activities.map((element) => {
+  channel[index].activities.map((element, idx) => {
     const seriesClone = JSON.parse(JSON.stringify(series));
-    seriesClone["text"] = element.idVideo;
+    seriesClone["text"] = getNameByKey(element.idVideo);
     seriesClone["values"] = getDataFromObject("viewCount", element.statistics);
-    seriesClone["line-color"] = constant.colors[index];
-    seriesClone["legend-item"]["background-color"] = constant.colors[index];
-    seriesClone.marker["background-color"] = constant.colors[index];
-    seriesClone.marker["border-color"] = constant.colies[index];
-    seriesClone["highlight-marker"]["background-color"] =
-      constant.colors[index];
+    seriesClone["line-color"] = constant.colors[idx];
+    seriesClone["legend-item"]["background-color"] = constant.colors[idx];
+    seriesClone.marker["background-color"] = constant.colors[idx];
+    seriesClone.marker["border-color"] = constant.colies[idx];
+    seriesClone["highlight-marker"]["background-color"] = constant.colors[idx];
     seriesData = [...seriesData, { ...seriesClone }];
   });
   myConfig.title.text = id;
-  myConfig["scale-x"].labels = getDataFromObject("createdAt", channel[index].activities[0].statistics);
+  myConfig["scale-x"].labels = result;
   myConfig.series = seriesData;
   zingchart.render({
     id: "myChart",
@@ -227,6 +236,21 @@ videoChart.onclick = async () => {
     width: "100%",
   });
 };
+
+const getNameByKey = (key) => {
+  const hashMap = document.cookie.slice(
+    document.cookie.search("hashMap=") + 8,
+    document.cookie.length
+  );
+  const data = JSON.parse(hashMap);
+  const obj = data.find((element) => element.id === key);
+  if (obj) {
+    return obj.title;
+  }
+
+  return key;
+};
+getNameByKey();
 
 export function handleChart(id) {
   myChartElements.classList.add("active");

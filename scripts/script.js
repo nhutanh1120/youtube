@@ -15,10 +15,17 @@ getChannel();
 async function getActivities() {
   const response = await fetch(constant.activities);
   const data = await response.json();
-
+  
+  let hashMap = []; 
   for await (const obj of data.items) {
     await getVideo(obj);
+    const temp = {
+      id: obj.contentDetails.upload.videoId,
+      title: obj.snippet.title
+    };
+    hashMap.push(temp);
   }
+  document.cookie = "hashMap=" + JSON.stringify(hashMap);
 }
 
 async function getVideo(obj) {
@@ -110,7 +117,7 @@ const closeCommentElement = document.querySelector("#comment-close");
 async function handleComment(videoId) {
   const response = await fetch(`${constant.commentThreads}&videoId=${videoId}`);
   const data = await response.json();
-
+console.log(data);
   commentElement.classList.add("active");
   contentCommentElement.innerHTML = "";
   for await (const obj of data.items) {
@@ -128,7 +135,7 @@ closeCommentElement.onclick = () => {
 };
 
 const renderComment = (snippet, replies) => {
-  const html = `<div class="comment ${replies && "margin-left: 100px"}">
+  const html = `<div class="comment" style="${replies && "margin-left: 100px"}">
                   <div class="comment-inner">
                       <div class="comment-avatar">
                           <span class="avatar avatar-circle avatar-image">
