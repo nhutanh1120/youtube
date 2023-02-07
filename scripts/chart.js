@@ -194,8 +194,56 @@ channelElement.onclick = () => {
 closeChartElement.onclick = () => {
   myChartElements.classList.remove("active");
 };
+const videoChart = document.querySelector("#videoChart");
+const chart = document.querySelector("#chart");
+videoChart.onclick = async () => {
+  let seriesData = [];
+  let id = "UCP1CBchAPHLqQWnZ23P4PrQ";
+  const response = await fetch(constant.videosJson);
+  const channel = await response.json();
+
+  myChartElements.classList.add("active");
+  const index = channel.findIndex((element) => element.idChannel === id);
+  sortObj(channel[index].activities);
+  channel[index].activities.map((element) => {
+    const seriesClone = JSON.parse(JSON.stringify(series));
+    seriesClone["text"] = element.idVideo;
+    seriesClone["values"] = getDataFromObject("viewCount", element.statistics);
+    seriesClone["line-color"] = constant.colors[index];
+    seriesClone["legend-item"]["background-color"] = constant.colors[index];
+    seriesClone.marker["background-color"] = constant.colors[index];
+    seriesClone.marker["border-color"] = constant.colies[index];
+    seriesClone["highlight-marker"]["background-color"] =
+      constant.colors[index];
+    seriesData = [...seriesData, { ...seriesClone }];
+  });
+  myConfig.title.text = id;
+  myConfig["scale-x"].labels = getDataFromObject("createdAt", channel[index].activities[0].statistics);
+  myConfig.series = seriesData;
+  zingchart.render({
+    id: "myChart",
+    data: myConfig,
+    height: "100%",
+    width: "100%",
+  });
+};
 
 export function handleChart(id) {
   myChartElements.classList.add("active");
   renderChart("video", id, constant.videosJson);
 }
+
+const sortObj = (obj) => {
+  for (let i = 0; i < obj.length - 1; i++) {
+    for (let j = i + 1; j < obj.length; j++) {
+      if (
+        parseInt(obj[i].statistics[0].viewCount) >
+        parseInt(obj[j].statistics[0].viewCount)
+      ) {
+        let tg = obj[i];
+        obj[i] = obj[j];
+        obj[j] = tg;
+      }
+    }
+  }
+};
