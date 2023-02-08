@@ -7,7 +7,6 @@ async function getChannel() {
   const response = await fetch(constant.channel);
   const data = await response.json();
 
-  document.cookie = "channel=" + JSON.stringify(data.items[0].statistics);
   renderChannelHtml(data.items[0].snippet, data.items[0].statistics);
 }
 getChannel();
@@ -117,7 +116,7 @@ const closeCommentElement = document.querySelector("#comment-close");
 async function handleComment(videoId) {
   const response = await fetch(`${constant.commentThreads}&videoId=${videoId}`);
   const data = await response.json();
-console.log(data);
+
   commentElement.classList.add("active");
   contentCommentElement.innerHTML = "";
   for await (const obj of data.items) {

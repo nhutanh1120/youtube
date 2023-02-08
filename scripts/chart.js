@@ -250,7 +250,6 @@ const getNameByKey = (key) => {
 
   return key;
 };
-getNameByKey();
 
 export function handleChart(id) {
   myChartElements.classList.add("active");
