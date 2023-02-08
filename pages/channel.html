@@ -27,12 +27,13 @@
             const channelResponse = await fetch(constant.channelJson);
             const channelJson = await channelResponse.json();
 
-            const dataChannel = document.cookie.slice(document.cookie.search("channel=") + 8, document.cookie.length);
+            const dataApiResponse = await fetch(constant.channel);
+            const dataApi = await dataApiResponse.json();
+            const statistics = dataApi.items[0].statistics;
 
             const index = channelJson.findIndex(element => element.id === id);
 
             if (index === -1) {
-                const statistics = JSON.parse(dataChannel);
                 statistics.createdAt = moment().format();
                 const data = {
                     id,
@@ -42,9 +43,8 @@
                 channelJson.push(data);
             } else {
                 if (moment(channelJson[index].updatedAt).format("YYYY-MM-DD") !== moment().format("YYYY-MM-DD")) {
-                    const data = JSON.parse(dataChannel);
-                    data.createdAt = moment().format();
-                    channelJson[index].statistics.push(data);
+                    statistics.createdAt = moment().format();
+                    channelJson[index].statistics.push(statistics);
                     channelJson[index].updatedAt = moment().format();
                 }
             }
