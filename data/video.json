@@ -116,9 +116,16 @@
                         "favoriteCount": "0",
                         "commentCount": "4",
                         "createdAt": "2023-02-15T22:25:14+07:00"
+                    },
+                    {
+                        "viewCount": "314",
+                        "likeCount": "15",
+                        "favoriteCount": "0",
+                        "commentCount": "4",
+                        "createdAt": "2023-02-16T22:37:05+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:14+07:00"
+                "updatedAt": "2023-02-16T22:37:05+07:00"
             },
             {
                 "idVideo": "7rv4iXR9Jjs",
@@ -234,9 +241,16 @@
                         "favoriteCount": "0",
                         "commentCount": "11",
                         "createdAt": "2023-02-15T22:25:14+07:00"
+                    },
+                    {
+                        "viewCount": "687",
+                        "likeCount": "28",
+                        "favoriteCount": "0",
+                        "commentCount": "11",
+                        "createdAt": "2023-02-16T22:37:05+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:14+07:00"
+                "updatedAt": "2023-02-16T22:37:05+07:00"
             },
             {
                 "idVideo": "wkXdG9M6-7o",
@@ -352,9 +366,16 @@
                         "favoriteCount": "0",
                         "commentCount": "18",
                         "createdAt": "2023-02-15T22:25:14+07:00"
+                    },
+                    {
+                        "viewCount": "414",
+                        "likeCount": "19",
+                        "favoriteCount": "0",
+                        "commentCount": "18",
+                        "createdAt": "2023-02-16T22:37:05+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:14+07:00"
+                "updatedAt": "2023-02-16T22:37:05+07:00"
             },
             {
                 "idVideo": "NVb5FIdjQTc",
@@ -470,9 +491,16 @@
                         "favoriteCount": "0",
                         "commentCount": "20",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "2238",
+                        "likeCount": "63",
+                        "favoriteCount": "0",
+                        "commentCount": "20",
+                        "createdAt": "2023-02-16T22:37:05+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:05+07:00"
             },
             {
                 "idVideo": "1IJU0Q5saj0",
@@ -588,9 +616,16 @@
                         "favoriteCount": "0",
                         "commentCount": "21",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "735",
+                        "likeCount": "27",
+                        "favoriteCount": "0",
+                        "commentCount": "21",
+                        "createdAt": "2023-02-16T22:37:06+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:06+07:00"
             },
             {
                 "idVideo": "a0tTxezorRY",
@@ -706,9 +741,16 @@
                         "favoriteCount": "0",
                         "commentCount": "15",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "398",
+                        "likeCount": "14",
+                        "favoriteCount": "0",
+                        "commentCount": "15",
+                        "createdAt": "2023-02-16T22:37:06+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:06+07:00"
             },
             {
                 "idVideo": "ppSjj6Gi1dA",
@@ -808,9 +850,15 @@
                         "likeCount": "43",
                         "favoriteCount": "0",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "1004",
+                        "likeCount": "43",
+                        "favoriteCount": "0",
+                        "createdAt": "2023-02-16T22:37:06+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:06+07:00"
             },
             {
                 "idVideo": "_n1fRoRgmAk",
@@ -910,9 +958,15 @@
                         "likeCount": "72",
                         "favoriteCount": "0",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "1890",
+                        "likeCount": "72",
+                        "favoriteCount": "0",
+                        "createdAt": "2023-02-16T22:37:06+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:06+07:00"
             },
             {
                 "idVideo": "rG82W27mMrY",
@@ -1012,9 +1066,15 @@
                         "likeCount": "18",
                         "favoriteCount": "0",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "468",
+                        "likeCount": "18",
+                        "favoriteCount": "0",
+                        "createdAt": "2023-02-16T22:37:06+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:06+07:00"
             },
             {
                 "idVideo": "7GytwbgMCYc",
@@ -1130,9 +1190,16 @@
                         "favoriteCount": "0",
                         "commentCount": "23",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "1313",
+                        "likeCount": "46",
+                        "favoriteCount": "0",
+                        "commentCount": "23",
+                        "createdAt": "2023-02-16T22:37:06+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:06+07:00"
             },
             {
                 "idVideo": "Jvfuj94_m-M",
@@ -1248,9 +1315,16 @@
                         "favoriteCount": "0",
                         "commentCount": "55",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "12025",
+                        "likeCount": "264",
+                        "favoriteCount": "0",
+                        "commentCount": "55",
+                        "createdAt": "2023-02-16T22:37:07+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:07+07:00"
             },
             {
                 "idVideo": "DRhDEarW9AE",
@@ -1366,9 +1440,16 @@
                         "favoriteCount": "0",
                         "commentCount": "20",
                         "createdAt": "2023-02-15T22:25:15+07:00"
+                    },
+                    {
+                        "viewCount": "774",
+                        "likeCount": "17",
+                        "favoriteCount": "0",
+                        "commentCount": "20",
+                        "createdAt": "2023-02-16T22:37:07+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:15+07:00"
+                "updatedAt": "2023-02-16T22:37:07+07:00"
             },
             {
                 "idVideo": "vt3F35syScc",
@@ -1484,9 +1565,16 @@
                         "favoriteCount": "0",
                         "commentCount": "13",
                         "createdAt": "2023-02-15T22:25:16+07:00"
+                    },
+                    {
+                        "viewCount": "641",
+                        "likeCount": "22",
+                        "favoriteCount": "0",
+                        "commentCount": "13",
+                        "createdAt": "2023-02-16T22:37:07+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:16+07:00"
+                "updatedAt": "2023-02-16T22:37:07+07:00"
             },
             {
                 "idVideo": "Vmaw1e-scRc",
@@ -1602,9 +1690,16 @@
                         "favoriteCount": "0",
                         "commentCount": "30",
                         "createdAt": "2023-02-15T22:25:16+07:00"
+                    },
+                    {
+                        "viewCount": "3194",
+                        "likeCount": "86",
+                        "favoriteCount": "0",
+                        "commentCount": "30",
+                        "createdAt": "2023-02-16T22:37:07+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:16+07:00"
+                "updatedAt": "2023-02-16T22:37:07+07:00"
             },
             {
                 "idVideo": "_tMiHThNkms",
@@ -1704,9 +1799,15 @@
                         "likeCount": "87",
                         "favoriteCount": "0",
                         "createdAt": "2023-02-15T22:25:16+07:00"
+                    },
+                    {
+                        "viewCount": "3672",
+                        "likeCount": "87",
+                        "favoriteCount": "0",
+                        "createdAt": "2023-02-16T22:37:07+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:16+07:00"
+                "updatedAt": "2023-02-16T22:37:07+07:00"
             },
             {
                 "idVideo": "8DE_H8oj9pU",
@@ -1822,9 +1923,16 @@
                         "favoriteCount": "0",
                         "commentCount": "37",
                         "createdAt": "2023-02-15T22:25:16+07:00"
+                    },
+                    {
+                        "viewCount": "7226",
+                        "likeCount": "93",
+                        "favoriteCount": "0",
+                        "commentCount": "37",
+                        "createdAt": "2023-02-16T22:37:08+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:16+07:00"
+                "updatedAt": "2023-02-16T22:37:08+07:00"
             },
             {
                 "idVideo": "fAanhSNuaxg",
@@ -1940,9 +2048,16 @@
                         "favoriteCount": "0",
                         "commentCount": "5",
                         "createdAt": "2023-02-15T22:25:16+07:00"
+                    },
+                    {
+                        "viewCount": "1148",
+                        "likeCount": "27",
+                        "favoriteCount": "0",
+                        "commentCount": "5",
+                        "createdAt": "2023-02-16T22:37:10+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:16+07:00"
+                "updatedAt": "2023-02-16T22:37:10+07:00"
             },
             {
                 "idVideo": "HF18Yr7dXKk",
@@ -2042,11 +2157,17 @@
                         "likeCount": "40",
                         "favoriteCount": "0",
                         "createdAt": "2023-02-15T22:25:16+07:00"
+                    },
+                    {
+                        "viewCount": "1243",
+                        "likeCount": "40",
+                        "favoriteCount": "0",
+                        "createdAt": "2023-02-16T22:37:11+07:00"
                     }
                 ],
-                "updatedAt": "2023-02-15T22:25:16+07:00"
+                "updatedAt": "2023-02-16T22:37:11+07:00"
             }
         ],
-        "updatedAt": "2023-02-15T22:25:14+07:00"
+        "updatedAt": "2023-02-16T22:37:04+07:00"
     }
 ]
