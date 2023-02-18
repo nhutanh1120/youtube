@@ -134,8 +134,15 @@
                 "hiddenSubscriberCount": false,
                 "videoCount": "18",
                 "createdAt": "2023-02-17T21:43:22+07:00"
+            },
+            {
+                "viewCount": "39388",
+                "subscriberCount": "1170",
+                "hiddenSubscriberCount": false,
+                "videoCount": "22",
+                "createdAt": "2023-02-18T23:59:40+07:00"
             }
         ],
-        "updatedAt": "2023-02-17T21:43:22+07:00"
+        "updatedAt": "2023-02-18T23:59:40+07:00"
     }
 ]
